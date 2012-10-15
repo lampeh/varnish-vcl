@@ -5,7 +5,7 @@ varnish-vcl
 Collection of VCL code
 
 
-`config <config/>`_
+`config <varnish-vcl/config/>`_
 ------
 ACLs and backend definitions.
 
