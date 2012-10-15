@@ -5,6 +5,10 @@ varnish-vcl
 Collection of VCL code
 
 
+standard.vcl
+  configuration root. copy or symlink to default.vcl
+
+
 config
 ------
 Node-specific ACLs and backend definitions.
@@ -28,6 +32,9 @@ backend.vcl
 common
 ------
 Useful VCL snippets for most occasions.
+
+backend_default.vcl
+  default backend definition
 
 cookie_remove_static.vcl
   remove cookies from static file requests
@@ -94,12 +101,56 @@ errorpages
 ----------
 Replace the default Guru Meditation. Icons either inlined or included from Amazon S3.
 
+errorpage_200_inline.vcl
+  varnish message page, with inline icon
+
+errorpage_200.vcl
+  varnish message page, with external icon
+
+errorpage_404_inline.vcl
+  404 page, with inline icon
+
+errorpage_404.vcl
+  404 page, with external icon
+
+errorpage_403_inline.vcl
+  403 page, with inline icon
+
+errorpage_403.vcl
+  403 page, with external icon
+
+errorpage_default_inline.vcl
+  default error page, with inline icon
+
+errorpage_default.vcl
+  default error page, with external icon
+
+
+experimental
+------------
+VCL experiments and/or untested functions. Could fail unexpectedly.
+
+grace.vcl
+  set grace time
+
+saintmode.vcl
+  set saint mode on error 500
+
 
 special
 -------
 Site-specific VCL.
 
+munin_ttl.vcl
+  low TTL for munin graphs
 
-experimental
-------------
-VCL experiments. Could fail unexpectedly.
+geoip_redirect.vcl
+  redirect example.com to example.de|at based on inline-C GeoIP
+  **obsolete!* use libvmod-geoip instead
+
+redirect_pool.ntp.org.vcl
+  redirect *.pool.ntp.org to www.pool.ntp.org
+
+backend_select_updates.vcl
+  Hierarchical Backend Selection
+  locate the requested file on alternative backends and cache them if found
