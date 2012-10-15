@@ -146,7 +146,7 @@ munin_ttl.vcl
 
 geoip_redirect.vcl
   redirect example.com to example.de|at based on inline-C GeoIP
-  **obsolete!* use libvmod-geoip instead
+  **obsolete!** use libvmod-geoip instead
 
 redirect_pool.ntp.org.vcl
   redirect \*.pool.ntp.org to www.pool.ntp.org
