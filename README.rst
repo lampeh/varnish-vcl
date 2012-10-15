@@ -84,6 +84,9 @@ redirect.vcl
 ttl_jitter.vcl
   vary object TTL to spread out cache refresh
 
+ttl_v-maxage.vcl
+  set object TTL from Cache-Control: v-maxage attribute
+
 geoip_init.vcl
   initialize inline-C GeoIP code - **obsolete!** use libvmod-geoip instead
 
