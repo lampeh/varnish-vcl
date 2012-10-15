@@ -146,11 +146,11 @@ munin_ttl.vcl
 
 geoip_redirect.vcl
   redirect example.com to example.de|at based on inline-C GeoIP
-  **obsolete!** use libvmod-geoip instead
+  - **obsolete!** use libvmod-geoip instead
 
 redirect_pool.ntp.org.vcl
   redirect \*.pool.ntp.org to www.pool.ntp.org
 
 backend_select_updates.vcl
-  Hierarchical Backend Selection
+  Hierarchical Backend Selection:
   locate the requested file on alternative backends and cache them if found
