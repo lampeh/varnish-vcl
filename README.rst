@@ -149,7 +149,7 @@ geoip_redirect.vcl
   **obsolete!* use libvmod-geoip instead
 
 redirect_pool.ntp.org.vcl
-  redirect *.pool.ntp.org to www.pool.ntp.org
+  redirect \*.pool.ntp.org to www.pool.ntp.org
 
 backend_select_updates.vcl
   Hierarchical Backend Selection
