@@ -1,10 +1,11 @@
+===========
 varnish-vcl
 ===========
 
 Collection of VCL code
 
 
-config
+`config<config/>`_
 ------
 ACLs and backend definitions.
 
