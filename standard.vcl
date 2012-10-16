@@ -11,7 +11,7 @@ import std;
 ## header-modification vmod - https://github.com/varnish/libvmod-header
 #import header;
 
-## digest and HMAC vmod  - https://github.com/varnish/libvmod-digest
+## digest and HMAC vmod - https://github.com/varnish/libvmod-digest
 #import digest;
 
 ## cURL bindings for Varnish - https://github.com/varnish/libvmod-curl
@@ -50,7 +50,7 @@ include "common/purge_noreq.vcl";
 ## reject /w00tw00t requests
 include "common/no_w00t.vcl";
 
-## force a cache miss if the client sets a "X-FreshForce: yes" header
+## force a cache miss if the client sets an "X-FreshForce: yes" header
 include "common/freshforce_header.vcl";
 
 ## force a cache miss if the client address matches the freshforce acl

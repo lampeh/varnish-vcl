@@ -49,7 +49,7 @@ error_restart.vcl
   restart request on error 503 (backend unavailable)
 
 extcache_ignorebusy.vcl
-  ignore busy objects to avoid race condition in cache networks
+  ignore busy objects to avoid stall in cache meshes
 
 fake_age.vcl
   reset Age: header (useful if varnish should cache an object longer than the browser)
@@ -156,4 +156,6 @@ redirect_pool.ntp.org.vcl
 
 backend_select_updates.vcl
   Hierarchical Backend Selection:
-  locate the requested file on alternative backends and cache them if found
+  Locate the requested file on alternative backends and cache them if found.
+  Requires `cached restart patch <https://www.varnish-cache.org/trac/ticket/412>`_ to work with varnish 2.x.
+  Not tested with varnish 3.x.

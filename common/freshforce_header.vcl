@@ -1,5 +1,5 @@
 ##
-# force a cache miss if the client sets a "X-FreshForce: yes" header
+# force a cache miss if the client sets an "X-FreshForce: yes" header
 ## 
 
 sub vcl_recv {
