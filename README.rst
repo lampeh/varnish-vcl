@@ -4,6 +4,8 @@ varnish-vcl
 
 Collection of VCL code
 
+`Wiki documentation<https://github.com/lampeh/varnish-vcl/wiki>`_
+
 
 standard.vcl
   configuration root. copy or symlink to default.vcl
