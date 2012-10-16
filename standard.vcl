@@ -101,6 +101,9 @@ include "common/ttl_v-maxage.vcl";
 ## vary TTL to avoid clustering of expired objects
 include "common/ttl_jitter.vcl";
 
+## GeoIP lookup: add X-Country-Code to request header
+#include "common/geoip_lookup.vcl";
+
 ## grace and saintmode
 include "experimental/grace.vcl";
 include "experimental/saintmode.vcl";

@@ -91,7 +91,7 @@ geoip_init.vcl
   initialize inline-C GeoIP code - **obsolete!** use libvmod-geoip instead
 
 geoip_lookup.vcl
-  add X-Country-Code: header to request
+  add X-Country-Code: header to request. requires `libvmod-geoip <https://github.com/lampeh/libvmod-geoip>`_
 
 no_w00t.vcl
   404 shortcut for DFind requests

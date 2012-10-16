@@ -1,21 +1,27 @@
 ##
-# obsolete! use libvmod-geoip: https://github.com/lampeh/libvmod-geoip
-#
 # GeoIP lookup
 #
-# adds X-Country-Code: header to HTTP request
-# see http://drcarter.info/2010/07/another-way-to-link-varnish-and-maxmind-geoip/
+# Sets X-Country-Code: to the country code associated with the client IP address
+# Sets X-Country-Code-IP: to the IP addressed used for the lookup
 #
-# TODO: Extract address from X-Forwarded-For: header if client.ip is a trusted proxy
+# TODO: Skip addresses of trusted proxies in X-Forwarded-For:
+#       VCL has if tests, but no loops.
+#       Workaround: don't add client.ip to xff in vcl_recv if known proxy detected
 #
-# requires common/geoip_init.vcl
+# requires libvmod-geoip - https://github.com/lampeh/libvmod-geoip
 ##
 
+# import geoip;
+
 sub vcl_recv {
-	# determine country code, set X-Country-Code: header
 	unset req.http.X-Country-Code;
-	C{
-		VRT_SetHdr(sp, HDR_REQ, "\017X-Country-Code:", (*get_country_code)( VRT_IP_string(sp, VRT_r_client_ip(sp)) ), vrt_magic_string_end);
-	}C
-	#log "X-Country-Code: " req.http.X-Country-Code;
+	unset req.http.X-Country-Code-IP;
+
+	# use first address from X-Forwarded-For: if the request comes from a trusted client.ip
+	if (client.ip ~ httpsproxy && req.http.X-Forwarded-For) {
+		set req.http.X-Country-Code-IP = regsub(req.http.X-Forwarded-For, "(?i)(^|.*,) *([0-9a-f.:]+)$", "\2");
+	} else {
+		set req.http.X-Country-Code-IP = client.ip;
+	}
+	set req.http.X-Country-Code = geoip.country_code(req.http.X-Country-Code-IP);
 }
