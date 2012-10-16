@@ -25,8 +25,10 @@ import std;
 
 
 ## edit node configuration in config/*
+
 ## backends
 include "config/backend.vcl";
+
 ## ACLs
 include "config/acl_httpsproxy.vcl";
 #include "config/acl_extcache.vcl";
@@ -141,8 +143,8 @@ include "errorpages/errorpage_200.vcl";
 ##
 
 
-# Below is a copy of the default VCL logic. If you redefine any of these
-# subroutines, the built-in logic will be appended to your code.
+# Below is a copy of the default VCL logic.
+# The built-in logic will be appended to your code.
 
 sub vcl_recv {
     if (req.restarts == 0) {
