@@ -114,9 +114,9 @@ include "experimental/saintmode.vcl";
 ## custom code here
 
 sub vcl_recv {
-	# redirect admin vhost to HTTPS
-	# Apache rewrite cannot do this because "Vary: HTTPS" is lost on redirect
-	# would cause endless redirect loop
+	## redirect admin vhost to HTTPS
+	## Apache rewrite cannot do this because "Vary: HTTPS" is lost on redirect
+	## would cause endless redirect loop
 	if (req.http.Host ~ "(?i)^admin\." && req.http.https != "on") {
 		set req.http.Location = "https://" + req.http.Host + req.url;
 		error 751 req.http.Location;
@@ -143,8 +143,8 @@ include "errorpages/errorpage_200.vcl";
 ##
 
 
-# Below is a copy of the default VCL logic.
-# The built-in logic will be appended to your code.
+## Below is a copy of the default VCL logic.
+## The built-in logic will be appended to your code.
 
 sub vcl_recv {
     if (req.restarts == 0) {
