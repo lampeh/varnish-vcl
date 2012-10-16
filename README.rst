@@ -87,9 +87,6 @@ ttl_jitter.vcl
 ttl_v-maxage.vcl
   set object TTL from Cache-Control: v-maxage attribute
 
-geoip_init.vcl
-  initialize inline-C GeoIP code - **obsolete!** use libvmod-geoip instead
-
 geoip_lookup.vcl
   add X-Country-Code: header to request. requires `libvmod-geoip <https://github.com/lampeh/libvmod-geoip>`_
 
@@ -146,10 +143,6 @@ Site-specific VCL.
 
 munin_ttl.vcl
   low TTL for munin graphs
-
-geoip_redirect.vcl
-  redirect example.com to example.de|at based on inline-C GeoIP
-  - **obsolete!** use libvmod-geoip instead
 
 redirect_pool.ntp.org.vcl
   redirect \*.pool.ntp.org to www.pool.ntp.org
