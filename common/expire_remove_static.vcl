@@ -7,7 +7,7 @@ sub vcl_backend_response {
 	if (req.url ~ "^[^?]*\.(png|jpg|gif|css|js|swf|flv|ico|xml|txt|pdf|doc|woff|eot|mp[34])(\?.*)?$"
 		&& beresp.http.Cache-Control) {
 			# use only Cache-Control: for static files
-			remove beresp.http.Expires;
+			unset beresp.http.Expires;
 
 			# ensure "public" tag. backend should set "private" if necessary
 			if (beresp.http.Cache-Control !~ "public" && beresp.http.Cache-Control !~ "private") {
