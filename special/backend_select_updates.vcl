@@ -74,7 +74,7 @@ sub vcl_recv {
 		}
 
 		# skip the rest and force hash lookup
-		if (req.request == "GET" || req.request == "HEAD") {
+		if (req.method == "GET" || req.method == "HEAD") {
 			return (lookup);
 		}
 	}

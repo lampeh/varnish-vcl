@@ -19,7 +19,7 @@ sub vcl_deliver {
 }
 
 sub vcl_recv {
-	if (req.request == "PURGE") {
+	if (req.method == "PURGE") {
 		if (!client.ip ~ purge) {
 			error 405 "Not allowed.";
 		}

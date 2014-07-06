@@ -23,7 +23,7 @@ sub vcl_error {
 		}
 		set obj.http.Content-Type = "text/html; charset=utf-8";
 		unset obj.http.Retry-After;
-		if (req.request != "HEAD") {
+		if (req.method != "HEAD") {
 			synthetic {"<!doctype html>
 <html lang="en">
 <head>
