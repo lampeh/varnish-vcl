@@ -2,6 +2,8 @@
 # varnish configuration
 ##
 
+vcl 4.0;
+
 ## built-in standard library - https://www.varnish-cache.org/docs/trunk/reference/vmod_std.html
 import std;
 
