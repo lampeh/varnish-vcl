@@ -120,7 +120,7 @@ sub vcl_recv {
 	## would cause endless redirect loop
 	if (req.http.Host ~ "(?i)^admin\." && req.http.https != "on") {
 		set req.http.Location = "https://" + req.http.Host + req.url;
-		error 751 req.http.Location;
+		return(synth(751, "https://" + req.http.Host + req.url));
 	}
         
 #	## forward static.* vhosts to nginx
