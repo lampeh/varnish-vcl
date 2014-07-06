@@ -56,7 +56,7 @@ sub vcl_recv {
 			set req.backend = updates;
 			set req.http.Host = "example-updates.s3.amazonaws.com";
 		} else if (req.restarts == 1) {
-			# try the static vhost if vcl_fetch restarted the request after a 403/404 response
+			# try the static vhost if vcl_backend_response restarted the request after a 403/404 response
 			# maybe the file is in local storage
 			set req.backend = local;
 			set req.http.Host = "static.example.com";
@@ -80,7 +80,7 @@ sub vcl_recv {
 	}
 }
 
-sub vcl_fetch {
+sub vcl_backend_response {
 	# restore original request
 	if (req.http.X-Orig-Host) {
 		set req.http.Host = req.http.X-Orig-Host;

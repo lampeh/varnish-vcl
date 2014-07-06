@@ -1,7 +1,7 @@
 ##
 # fake Age: header for objects where ttl > max-age
 #
-# set beresp.http.X-Ageless in vcl_fetch
+# set beresp.http.X-Ageless in vcl_backend_response
 ##
 
 sub vcl_deliver {

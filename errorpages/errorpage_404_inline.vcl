@@ -5,7 +5,7 @@
 ##
 
 # intercept 404 response from backend and send request into vcl_error()
-sub vcl_fetch {
+sub vcl_backend_response {
 	if (beresp.status == 404) {
 		error beresp.status beresp.response;
 	}

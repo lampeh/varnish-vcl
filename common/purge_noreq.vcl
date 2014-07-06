@@ -8,7 +8,7 @@
 # requires ACL purge
 ##
 
-sub vcl_fetch {
+sub vcl_backend_response {
 	set beresp.http.X-Purge-URL = req.url;
 	set beresp.http.X-Purge-Host = req.http.host;
 }

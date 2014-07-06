@@ -7,7 +7,7 @@ sub vcl_recv {
 	set req.http.Surrogate-Capability = "varnish=ESI/1.0";
 }
 
-sub vcl_fetch {
+sub vcl_backend_response {
 	# handle ESI
 	## TODO: really parse control header. see http://www.w3.org/TR/edge-arch
 	if (beresp.http.Surrogate-Control ~ "ESI/1.0") {

@@ -6,7 +6,7 @@
 
 # handle only 403/405 errors from VCL by default
 # enable the following block to intercept 403/405 responses from backend, too
-#sub vcl_fetch {
+#sub vcl_backend_response {
 #	if (beresp.status == 403 || beresp.status == 405) {
 #		error beresp.status beresp.response;
 #	}

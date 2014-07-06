@@ -208,7 +208,7 @@ sub vcl_miss {
     return (fetch);
 }
 
-sub vcl_fetch {
+sub vcl_backend_response {
     if (beresp.ttl <= 0s ||
         beresp.http.Set-Cookie ||
         beresp.http.Vary == "*") {
