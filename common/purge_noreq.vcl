@@ -21,9 +21,9 @@ sub vcl_deliver {
 sub vcl_recv {
 	if (req.method == "PURGE") {
 		if (!client.ip ~ purge) {
-			error 405 "Not allowed.";
+			return(synth(405, "Not allowed."));
 		}
 		ban("obj.http.X-Purge-URL ~ " + req.url + " && obj.http.X-Purge-Host ~ " + req.http.host);
-		error 200 "Added to ban list";
+		return(synth(200, "Added to ban list"));
 	}
 }

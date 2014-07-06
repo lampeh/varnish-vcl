@@ -7,9 +7,9 @@
 sub vcl_recv {
 	if (req.method == "PURGE") {
 		if (!client.ip ~ purge) {
-			error 405 "Not allowed.";
+			return(synth(405, "Not allowed."));
 		}
 		ban("req.url ~ " + req.url + " && req.http.host ~ " + req.http.host);
-		error 200 "Added to ban list";
+		return(synth(200, "Added to ban list"));
 	}
 }

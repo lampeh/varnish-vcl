@@ -70,7 +70,7 @@ sub vcl_recv {
 			set req.http.Authorization = "Basic dmFybmlzaHByb3h5OnNvbWVwYXNzd29yZA==";
 		} else {
 			# file not found on any backend
-			error 404 "Not found";
+			return(synth(404, "Not found"));
 		}
 
 		# skip the rest and force hash lookup

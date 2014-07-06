@@ -4,6 +4,6 @@
 
 sub vcl_recv {
 	if (req.url ~ "^/w00tw00t") {
-		error 404 "Not Found";
+		return(synth(404, "Not Found"));
 	}
 }

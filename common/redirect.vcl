@@ -2,7 +2,7 @@
 # return 302 or 301 redirect from VCL
 # 
 # Usage:
-#  error 750 "https://www.example.com/";
+#  return(synth(750, "https://www.example.com/"));
 # or
 #  set req.http.location = "https://www.example.com" req.url;
 #  error 750 req.http.location;

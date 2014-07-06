@@ -6,6 +6,6 @@
 
 sub vcl_recv {
 	if (req.http.Host ~ "(?i)\.?pool\.ntp\.org$") {
-		error 751 "http://www.pool.ntp.org/";
+		return(synth(751, "http://www.pool.ntp.org/"));
 	}
 }
