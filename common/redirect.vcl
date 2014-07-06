@@ -10,33 +10,33 @@
 # Use error 751 for permanent redirect with code 301
 ##
 
-sub vcl_error {
-	# redirect from vcl. new location is in obj.response
-	if (obj.status == 750 || obj.status == 751 ) {
-		set obj.http.Location = obj.response;
-		if (obj.status == 751) {
-			set obj.status = 301;
-			set obj.response = "Moved Permanently";
+sub vcl_synth {
+	# redirect from vcl. new location is in resp.reason
+	if (resp.status == 750 || resp.status == 751 ) {
+		set resp.http.Location = resp.reason;
+		if (resp.status == 751) {
+			set resp.status = 301;
+			set resp.reason = "Moved Permanently";
 		} else {
-			set obj.status = 302;
-			set obj.response = "Moved Temporarily";
+			set resp.status = 302;
+			set resp.reason = "Moved Temporarily";
 		}
-		set obj.http.Content-Type = "text/html; charset=utf-8";
-		unset obj.http.Retry-After;
+		set resp.http.Content-Type = "text/html; charset=utf-8";
+		unset resp.http.Retry-After;
 		if (req.method != "HEAD") {
-			synthetic {"<!doctype html>
+			synthetic({"<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>"} + obj.status + " - " + obj.response + {"</title>
+	<title>"} + resp.status + " - " + resp.reason + {"</title>
 </head>
 <body>
 	<div id="container">
-		<h1>"} + obj.response + {"</h1>
-		<p>The document has moved <a href=""} + obj.http.Location + {"">here</a>.</p>
+		<h1>"} + resp.reason + {"</h1>
+		<p>The document has moved <a href=""} + resp.http.Location + {"">here</a>.</p>
 	</div>
 </body>
-</html>"};
+</html>"});
 		}
 		return(deliver);
 	}
