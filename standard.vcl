@@ -108,9 +108,8 @@ include "common/ttl_jitter.vcl";
 ## GeoIP lookup: add X-Country-Code to request header
 #include "common/geoip_lookup.vcl";
 
-## grace and saintmode
+## grace
 include "experimental/grace.vcl";
-include "experimental/saintmode.vcl";
 
 
 ## custom code here
