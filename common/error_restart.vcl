@@ -3,9 +3,9 @@
 # or dies during the request
 ##
 
-sub vcl_error {
+sub vcl_backend_error {
 	# restart request on status 503 (backend failure)
-	if (obj.status == 503 && req.restarts < 4) {
+	if (beresp.status == 503 && req.restarts < 4) {
 		std.log("vcl_error(): Status 503 - restart");
 		return (restart);
 	}
